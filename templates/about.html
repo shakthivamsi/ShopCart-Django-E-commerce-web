@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}About Us{% endblock title %}
+
+{% block body %}
+<!-- About Us Hero Section -->
+<section class="py-5 bg-gradient" style="background: linear-gradient(to right, #e3f2fd, #ffffff);">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-md-6 mb-4 mb-md-0">
+        <img src="{% static 'images/about-ecommerce.jpg' %}" class="img-fluid rounded shadow-lg" alt="About ShopCart">
+      </div>
+      <div class="col-md-6">
+        <h1 class="display-5 fw-bold text-primary">Welcome to <span class="text-dark">ShopCart</span></h1>
+        <p class="lead text-muted mt-3">
+          Your one-stop destination for fast, reliable, and enjoyable online shopping.
+          We deliver products at lightning speed with secure payments and seamless tracking.
+        </p>
+        <ul class="list-group list-group-flush mt-4">
+          <li class="list-group-item"><i class="bi bi-truck text-success me-2"></i> 1-Hour Express Delivery</li>
+          <li class="list-group-item"><i class="bi bi-shield-lock text-success me-2"></i> Secure Razorpay Payments</li>
+          <li class="list-group-item"><i class="bi bi-receipt text-success me-2"></i> Downloadable PDF Invoices</li>
+          <li class="list-group-item"><i class="bi bi-clock-history text-success me-2"></i> Real-Time Order Tracking</li>
+          <li class="list-group-item"><i class="bi bi-person-circle text-success me-2"></i> Personalized Profiles & History</li>
+          <li class="list-group-item"><i class="bi bi-headset text-success me-2"></i> 24/7 Customer Support</li>
+        </ul>
+        <a href="/contact" class="btn btn-primary mt-4">Get in Touch</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Our Mission Section -->
+<section class="py-5 text-white" style="background: linear-gradient(to right, #4facfe, #00f2fe);">
+  <div class="container text-center">
+    <h2 class="fw-bold">Our Mission</h2>
+    <p class="lead mt-3 px-4">
+      At ShopCart, we strive to transform online shopping into an experience that's fast, secure, and delightful. 
+      We blend powerful tech with beautiful design to deliver not just products, but satisfaction.
+    </p>
+  </div>
+</section>
+
+<!-- Why Choose Us Section -->
+<section class="py-5 bg-light">
+  <div class="container text-center">
+    <h2 class="fw-bold mb-4">Why Customers Love ShopCart</h2>
+    <div class="row g-4">
+      <div class="col-md-4">
+        <div class="p-4 shadow rounded bg-white">
+          <i class="bi bi-lightning-charge display-4 text-primary"></i>
+          <h5 class="mt-3 fw-bold">Superfast Delivery</h5>
+          <p class="text-muted">We bring your orders to your door in under 1 hour. Speed is our promise.</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="p-4 shadow rounded bg-white">
+          <i class="bi bi-lock-fill display-4 text-primary"></i>
+          <h5 class="mt-3 fw-bold">Safe & Secure</h5>
+          <p class="text-muted">Payments powered by Razorpay keep your transactions 100% secure.</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="p-4 shadow rounded bg-white">
+          <i class="bi bi-stars display-4 text-primary"></i>
+          <h5 class="mt-3 fw-bold">User-Centric</h5>
+          <p class="text-muted">From design to delivery, everything we build is for our users’ happiness.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock body %}

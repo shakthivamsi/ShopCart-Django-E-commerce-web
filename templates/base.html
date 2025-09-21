@@ -1,0 +1,414 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>
+{% block title %} {% endblock title %}
+
+  </title>
+  <meta content="ecommerce website we deliver products in 1 hours" name="description">
+  <meta content="ecommerce" name="amazon,flipkart,selling,products">
+
+
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="{% static '/assets/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static '/assets/vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
+  <link href="{% static '/assets/vendor/boxicons/css/boxicons.min.css' %}" rel="stylesheet">
+  <link href="{% static '/assets/vendor/glightbox/css/glightbox.min.css' %}" rel="stylesheet">
+  <link href="{% static '/assets/vendor/remixicon/remixicon.css' %}" rel="stylesheet">
+  <link href="{% static '/assets/vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <!-- Template Main CSS File -->
+  <link href="{% static '/assets/css/style.css' %}" rel="stylesheet">
+
+</head>
+
+<body>
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="fixed-top ">
+    <div class="container d-flex align-items-center justify-content-between">
+
+      
+
+<a href="/" class="logo"><img src="{% static 'images/logo.png' %}" alt="" class="img-fluid"> Shop Cart</a>
+
+
+      <nav id="navbar" class="navbar">
+        <ul>
+          <li><a class="nav-link scrollto active" href="/">Home</a></li>
+        
+          <li><a class="nav-link scrollto" href="/about">About</a></li>
+          <li><a class="nav-link scrollto" href="/checkout">Checkout</a></li>
+          <li><a class="nav-link scrollto" href="/profile">My Profile<i class="fa-regular fa-square-user"></i> </a></li>
+
+          <button type="button" class="nav-link scrollto bg-danger p-3 m-2 text-white" id="popcart" data-container="body" data-toggle="popover" data-placement="bottom" data-html="true" ><i class="fa-solid fa-cart-shopping"></i>  Cart (<span id="cart">0</span>)
+          </button>
+
+
+
+
+
+
+          {% if request.user.is_authenticated %}
+          <li><a  class="nav-link scrollto" href="/auth/logout/">Logout <i class="fa-solid fa-right-from-bracket"></i>
+
+          
+          </a></li>
+          {% else %}
+          <li class="dropdown"><a href="#"><span>SignIn <i class="fa-solid fa-user"></i></span> <i class="bi bi-chevron-down"></i></a>
+
+            <ul>
+              <li><a href="/auth/signup/">Sign Up <i class="fa-solid fa-user"></i></a></li>
+              <li><a href="/auth/login/">Login</a></li>
+            
+
+            </ul>
+          </li>
+          {% endif %}
+
+        
+
+
+
+         
+
+
+
+          <li><a class="nav-link scrollto bg-dark p-3 m-2" href="/contact">Contact <i class="fa-solid fa-message-middle"></i></a></li>
+          
+        </ul>
+        <i class="bi bi-list mobile-nav-toggle"></i>
+      </nav><!-- .navbar -->
+
+    </div>
+  </header><!-- End Header -->
+
+
+  <!-- ======= Hero Section ======= -->
+  <section id="hero">
+    <div class="hero-container">
+
+      {% block content %}
+      
+
+     
+      
+
+
+
+      
+      {% endblock content %}
+      
+    </div>
+  </section><!-- End Hero -->
+
+  <main id="main">
+
+    {% block body %}
+
+
+
+
+    
+    {% endblock body %}
+
+
+
+
+  </main><!-- End #main -->
+
+  {% comment %} <!-- ======= Footer ======= -->
+  <footer id="footer">
+
+    <div class="footer-top">
+      <div class="container">
+        <div class="row">
+
+          <div class="col-lg-3 col-md-6 footer-contact">
+            <h3>Tempo</h3>
+            <p>
+              A108 Adam Street <br>
+              New York, NY 535022<br>
+              United States <br><br>
+              <strong>Phone:</strong> +1 5589 55488 55<br>
+              <strong>Email:</strong> info@example.com<br>
+            </p>
+          </div>
+
+          <div class="col-lg-2 col-md-6 footer-links">
+            <h4>Useful Links</h4>
+            <ul>
+              <li><i class="bx bx-chevron-right"></i> <a href="/">Home</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="/about">About us</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Services</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Terms of service</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Privacy policy</a></li>
+            </ul>
+          </div>
+
+          <div class="col-lg-3 col-md-6 footer-links">
+            <h4>Our Services</h4>
+            <ul>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Web Design</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Web Development</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Product Management</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Marketing</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Graphic Design</a></li>
+            </ul>
+          </div>
+
+          <div class="col-lg-4 col-md-6 footer-newsletter">
+            <h4>Join Our Newsletter</h4>
+            <p>Tamen quem nulla quae legam multos aute sint culpa legam noster magna</p>
+            <form action="" method="post">
+              <input type="email" name="email"><input type="submit" value="Subscribe">
+            </form>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container d-md-flex py-4">
+
+      <div class="me-md-auto text-center text-md-start">
+        <div class="copyright">
+          &copy; Copyright <strong><span>Tempo</span></strong>. All Rights Reserved
+        </div>
+        <div class="credits">
+          Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+        </div>
+      </div>
+      <div class="social-links text-center text-md-right pt-3 pt-md-0">
+        <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
+        <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
+        <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
+        <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
+        <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+      </div>
+    </div>
+  </footer><!-- End Footer --> {% endcomment %}
+
+  <!-- ======= Footer ======= -->
+<footer id="footer" class="bg-light text-dark pt-5 pb-4">
+
+  <div class="container text-md-left">
+    <div class="row text-md-left">
+
+      <!-- Contact Info -->
+      <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
+        <h5 class="text-uppercase mb-4 font-weight-bold">ShopCart</h5>
+        <p>
+          Kakinada , Andhra Pradesh, INDIA<br>
+          <strong>Phone:</strong> +91 9398335389<br>
+          <strong>Email:</strong> ananthalakshminakka157@gmail.com
+        </p>
+      </div>
+
+      <!-- Useful Links -->
+      <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
+        <h5 class="text-uppercase mb-4 font-weight-bold">Quick Links</h5>
+        <p><a href="/" class="text-dark">Home</a></p>
+        <p><a href="/about" class="text-dark">About</a></p>
+        <p><a href="/checkout" class="text-dark">Checkout</a></p>
+        <p><a href="/profile" class="text-dark">My Profile</a></p>
+      </div>
+
+      <!-- Services -->
+      <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
+        <h5 class="text-uppercase mb-4 font-weight-bold">Our Services</h5>
+        <p><a href="#" class="text-dark">🚚 1-Hour Delivery</a></p>
+        <p><a href="#" class="text-dark">🔐 Secure Razorpay Payments</a></p>
+        <p><a href="#" class="text-dark">📦 Order Tracking & Status</a></p>
+        <p><a href="#" class="text-dark">🧾 PDF Invoice Download</a></p>
+        <p><a href="#" class="text-dark">📧 Email Notifications</a></p>
+        <p><a href="#" class="text-dark">👩‍💻 24x7 Customer Support</a></p>
+      </div>
+
+
+      <!-- Newsletter -->
+      <div class="col-md-4 col-lg-4 col-xl-3 mx-auto mt-3">
+        <h5 class="text-uppercase mb-4 font-weight-bold">Subscribe</h5>
+        <p>Stay updated with our latest offers</p>
+        <form method="post" action="#">
+          {% csrf_token %}
+          <div class="input-group mb-3">
+            <input type="email" class="form-control" placeholder="Email" required>
+            <button class="btn btn-danger" type="submit">Subscribe</button>
+          </div>
+        </form>
+        <div>
+          <a href="#" class="text-dark me-4"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" class="text-dark me-4"><i class="fab fa-twitter"></i></a>
+          <a href="#" class="text-dark me-4"><i class="fab fa-instagram"></i></a>
+          <a href="#" class="text-dark me-4"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+      </div>
+
+    </div>
+
+    <hr class="my-3">
+
+    <!-- Copyright -->
+    <div class="row">
+      <div class="col-md-7 col-lg-8">
+        <p class="text-center text-md-left">© 2025 <strong>Shop Cart</strong>. All Rights Reserved</p>
+      </div>
+      <div class="col-md-5 col-lg-4">
+        <p class="text-center text-md-end">Designed by <a href="https://www.linkedin.com/in/ananthalakshminakka" class="text-decoration-none text-dark fw-bold">Nakka Anantha Lakshmi</a></p>
+      </div>
+    </div>
+
+  </div>
+</footer>
+<!-- End Footer -->
+
+
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="{% static '/assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static '/assets/vendor/glightbox/js/glightbox.min.js' %}"></script>
+  <script src="{% static '/assets/vendor/isotope-layout/isotope.pkgd.min.js' %}"></script>
+  <script src="{% static '/assets/vendor/swiper/swiper-bundle.min.js' %}"></script>
+  <script src="{% static '/assets/vendor/php-email-form/validate.js' %}"></script>
+
+  <!-- Template Main JS File -->
+  <script src="{% static '/assets/js/main.js' %}"></script>
+  <!-- Confetti JS -->
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+<!-- Balloon CSS -->
+<style>
+  .balloon {
+    position: fixed;
+    top: -100px;
+    width: 40px;
+    height: 60px;
+    border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+    animation: drop 3s ease-in forwards;
+    z-index: 9999;
+    opacity: 0.85;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  }
+
+  @keyframes drop {
+    0% {
+      transform: translateY(0) scale(1);
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(100vh) scale(0.9);
+      opacity: 0;
+    }
+  }
+</style>
+
+<!-- Celebration Script -->
+<script>
+  window.addEventListener('load', function () {
+    if (window.location.pathname === "/") {
+      // 🎉 Confetti for 100 seconds
+      const duration = 100000;
+      const end = Date.now() + duration;
+
+      (function frame() {
+        confetti({
+          particleCount: 6,
+          angle: 60,
+          spread: 60,
+          origin: { x: 0 }
+        });
+        confetti({
+          particleCount: 6,
+          angle: 120,
+          spread: 60,
+          origin: { x: 1 }
+        });
+
+        if (Date.now() < end) {
+          requestAnimationFrame(frame);
+        }
+      })();
+
+      // 🎈 Balloons (60 colorful ones)
+      const balloonColors = [
+        "linear-gradient(to bottom, #ff4e50, #f9d423)",
+        "linear-gradient(to bottom, #24c6dc, #514a9d)",
+        "linear-gradient(to bottom, #f857a6, #ff5858)",
+        "linear-gradient(to bottom, #00c3ff, #ffff1c)",
+        "linear-gradient(to bottom, #43cea2, #185a9d)",
+        "linear-gradient(to bottom, #ffb347, #ffcc33)",
+        "linear-gradient(to bottom, #e96443, #904e95)",
+        "linear-gradient(to bottom, #bdc3c7, #2c3e50)",
+        "linear-gradient(to bottom, #4ca1af, #c4e0e5)",
+        "linear-gradient(to bottom, #eecda3, #ef629f)"
+      ];
+
+      for (let i = 0; i < 60; i++) {
+        setTimeout(() => {
+          const balloon = document.createElement('div');
+          balloon.classList.add('balloon');
+          balloon.style.left = Math.random() * 100 + 'vw';
+          balloon.style.background = balloonColors[Math.floor(Math.random() * balloonColors.length)];
+          document.body.appendChild(balloon);
+          setTimeout(() => balloon.remove(), 3000);
+        }, i * 100); // Stagger appearance
+      }
+    }
+  });
+</script>
+
+<!-- ✅ Toast Trigger Script -->
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const subscribeForm = document.querySelector("#footer form");
+
+    if (subscribeForm) {
+      subscribeForm.addEventListener("submit", function (e) {
+        e.preventDefault(); // Prevent real form submission
+        const emailInput = subscribeForm.querySelector("input[type='email']");
+        const email = emailInput.value.trim();
+
+        if (!email) {
+          alert("Please enter your email.");
+          return;
+        }
+
+        // ✅ Show Bootstrap Toast
+        const toastEl = document.getElementById("subscribeToast");
+        const toast = new bootstrap.Toast(toastEl);
+        toast.show();
+
+        emailInput.value = ""; // Clear email field
+      });
+    }
+  });
+</script>
+
+
+<!-- ✅ Toast Notification Container -->
+<div class="position-fixed bottom-0 end-0 p-3" style="z-index: 1055">
+  <div id="subscribeToast" class="toast align-items-center text-bg-success border-0" role="alert" aria-live="assertive" aria-atomic="true">
+    <div class="d-flex">
+      <div class="toast-body">
+        🎉 Thanks for subscribing! We'll keep you updated.
+      </div>
+      <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+    </div>
+  </div>
+</div>
+</body>
+
+</html>

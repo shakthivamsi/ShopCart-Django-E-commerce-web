@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% block title %}Payment | Razorpay{% endblock %}
+{% block body %}
+<div class="container text-center mt-5">
+    <h2>Proceed to Payment</h2>
+    <p>Order ID: {{ order.order_id }}</p>
+    <p>Total Amount: ₹{{ order.amount }}</p>
+
+    <button id="rzp-button" class="btn btn-primary mt-3">Pay with Razorpay</button>
+</div>
+
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+<script>
+    var options = {
+        "key": "{{ razorpay_key_id }}", // Enter the Key ID generated from the Dashboard
+        "amount": "{{ payment.amount }}", // Amount is in paise
+        "currency": "INR",
+        "name": "ShopyCart",
+        "description": "Test Transaction",
+        "image": "https://yourwebsite.com/logo.png", // Optional logo URL
+        "order_id": "{{ payment.id }}", // Razorpay order ID from your backend
+        "handler": function (response){
+            // ✅ Handle success and POST to your payment status view
+            var form = document.createElement('form');
+            form.method = 'POST';
+            form.action = '/payment-status/';
+
+            var csrf = document.createElement('input');
+            csrf.name = 'csrfmiddlewaretoken';
+            csrf.value = '{{ csrf_token }}';
+            form.appendChild(csrf);
+
+            var payment_id = document.createElement('input');
+            payment_id.name = 'razorpay_payment_id';
+            payment_id.value = response.razorpay_payment_id;
+            form.appendChild(payment_id);
+
+            var order_id = document.createElement('input');
+            order_id.name = 'razorpay_order_id';
+            order_id.value = response.razorpay_order_id;
+            form.appendChild(order_id);
+
+            document.body.appendChild(form);
+            form.submit();
+        },
+        "prefill": {
+            "name": "{{ order.name }}",
+            "email": "{{ order.email }}",
+            "contact": "{{ order.phone }}"
+        },
+        "theme": {
+            "color": "#3399cc"
+        }
+    };
+
+    var rzp1 = new Razorpay(options);
+
+    document.getElementById('rzp-button').onclick = function(e){
+        rzp1.open();
+        e.preventDefault();
+    }
+</script>
+{% endblock %}

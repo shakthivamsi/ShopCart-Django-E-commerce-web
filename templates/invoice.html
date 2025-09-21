@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Invoice - {{ order.order_id }}</title>
+    <style>
+        body { font-family: Arial; margin: 20px; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { padding: 10px; border: 1px solid #ccc; }
+        h2 { text-align: center; }
+        .total { font-weight: bold; }
+        .print-btn {
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: right;
+        }
+    </style>
+</head>
+<body>
+
+<div class="print-btn">
+    <button onclick="window.print()">🖨️ Print / Save as PDF</button>
+</div>
+
+<h2>Invoice</h2>
+<p><strong>Order ID:</strong> {{ order.order_id }}</p>
+<p><strong>Name:</strong> {{ order.name }}</p>
+<p><strong>Email:</strong> {{ order.email }}</p>
+<p><strong>Address:</strong> {{ order.address1 }}, {{ order.address2 }}, {{ order.city }} - {{ order.zip_code }}</p>
+<p><strong>Phone:</strong> {{ order.phone }}</p>
+<p><strong>Date:</strong> {{ order.latest_update.timestamp }}</p>
+
+<table>
+    <thead>
+        <tr>
+            <th>Product</th>
+            <th>Quantity</th>
+            <th>Price (₹)</th>
+            <th>Total (₹)</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for p in order.products %}
+        <tr>
+            <td>{{ p.name }}</td>
+            <td>{{ p.qty }}</td>
+            <td>{{ p.price }}</td>
+            <td>{{ p.total }}</td>
+
+        </tr>
+        {% endfor %}
+        <tr>
+            <td colspan="3" class="total">Grand Total</td>
+            <td class="total">₹{{ order.amount }}</td>
+        </tr>
+    </tbody>
+</table>
+
+</body>
+</html>

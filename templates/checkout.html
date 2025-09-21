@@ -1,0 +1,146 @@
+{% extends 'base.html' %}
+{% block title %} Check Out {% endblock title %}
+{% block content %}
+<h1>Welcome to Dhamaka Sale</h1>
+{% endblock content %}
+{% block body %}
+{% load static %}
+
+<section id="portfolio" class="portfolio">
+  <div class="container">
+
+    {% for message in messages %}
+    <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+      <strong>{{ message }}</strong>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    {% endfor %}
+
+    <div class="section-title">
+      <h2>Welcome to Shop</h2>
+      <h3>Checkout Page</h3>
+    </div>
+
+    <div class="container">
+      <div class="col my-4">
+        <h2>Step 1 - Review Your Cart Items</h2>
+        <div class="my-4">
+          <ul class="list-group" id="items"></ul>
+
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb mt-3">
+              <li class="breadcrumb-item active" aria-current="page">
+                Your Cart Total Is <b>Rs. <span id="totalprice"></span></b>. Enter your details below & place your order.
+              </li>
+            </ol>
+          </nav>
+        </div>
+      </div>
+
+      <div class="col my-4">
+        <h2>Step 2 - Enter Address & Other Details:</h2>
+        <form method="post" action="/checkout/">{% csrf_token %}
+          <input type="hidden" name="itemsJson" id="itemsJson">
+          <input type="hidden" id="amt" name="amt">
+
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label>Name</label>
+              <input type="text" class="form-control mt-3" id="name" name="name" required>
+            </div>
+            <div class="form-group col-md-6">
+              <label>Email</label>
+              <input type="email" class="form-control mt-3" id="email" name="email" value="{{ user.email }}" required>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label>Address</label>
+              <input type="text" class="form-control mt-3" id="address1" name="address1" required>
+            </div>
+            <div class="form-group col-md-6">
+              <label>Address Line 2</label>
+              <input type="text" class="form-control mt-3" id="address2" name="address2" required>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label>City</label>
+              <input type="text" class="form-control mt-3" id="city" name="city" required>
+            </div>
+            <div class="form-group col-md-6">
+              <label>State</label>
+              <input type="text" class="form-control mt-3" id="state" name="state" required>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label>Pin Code</label>
+              <input type="number" class="form-control mt-3" id="zip_code" name="zip_code" required>
+            </div>
+            <div class="form-group col-md-6">
+              <label>Phone Number</label>
+              <input type="number" class="form-control mt-3" id="phone" name="phone" required>
+            </div>
+          </div>
+
+          <button type="submit" class="btn btn-success btn-sm btn-block col-md-4 mt-4">Place Order</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Scripts -->
+<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
+
+<script>
+if (localStorage.getItem('cart') == null) {
+  var cart = {};
+} else {
+  cart = JSON.parse(localStorage.getItem('cart'));
+}
+
+var totalPrice = 0;
+
+if ($.isEmptyObject(cart)) {
+  $('#items').append(`<p>Your cart is empty.</p>`);
+} else {
+  for (item in cart) {
+    let name = cart[item][1];
+    let qty = cart[item][0];
+    let itemPrice = cart[item][2];
+    totalPrice += qty * itemPrice;
+
+    $('#items').append(`
+      <li class="list-group-item d-flex justify-content-between align-items-center">
+        ${name} - Price: ₹${itemPrice}
+        <span class="badge badge-primary badge-pill">${qty}</span>
+      </li>
+    `);
+  }
+}
+
+document.getElementById('totalprice').innerHTML = totalPrice;
+$('#itemsJson').val(JSON.stringify(cart));
+
+// ✅ Ensure amount is updated before submitting
+document.querySelector("form").addEventListener("submit", function () {
+  document.getElementById("amt").value = totalPrice;
+});
+
+// ✅ Thank you alert after order placed
+{% if thank %}
+  alert('Thanks for ordering with us. Your order id is {{id}}. Use it to track your order using our order tracker.');
+  localStorage.clear();
+  document.location = "/";
+{% endif %}
+</script>
+
+
+{% endblock body %}

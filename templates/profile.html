@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+{% block title %}Profile Page{% endblock title %}
+
+{% block body %}
+<section id="portfolio" class="portfolio">
+    <div class="container">
+        <h1>My Profile</h1>
+
+        <table class="table table-info table-striped">
+            <thead>
+                <tr>
+                    <th>Order ID</th>
+                    <th>Name</th>
+                    <th>Products</th>
+                    <th>Amount Paid</th>
+                    <th>Payment Status</th>
+                    <th>Address</th>
+                    <th>Phone Number</th>
+                    <th>Delivery Status</th>
+                    <th>Delivered</th>
+                    <th>Date</th>
+                    <th>Invoice</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for order in items %}
+                <tr class="{% if order.paymentstatus == 'FAILED' %}table-danger{% elif order.latest_update and order.latest_update.delivered %}table-success{% else %}table-warning{% endif %}">
+                    <td>{{ order.oid }}</td>
+                    <td>{{ order.name }}</td>
+                    <td>
+                        <ul>
+                            {% for item in order.products %}
+                                <li>{{ item }}</li>
+                            {% endfor %}
+                        </ul>
+                    </td>
+                    <td>{{ order.amountpaid }}</td>
+                    <td>{{ order.paymentstatus }}</td>
+                    <td>{{ order.address1 }}</td>
+                    <td>{{ order.phone }}</td>
+
+                    {% if order.latest_update %}
+                        <td>{{ order.latest_update.update_desc }}</td>
+
+                        {% if order.latest_update.delivered %}
+                            <td><i class="fa-solid fa-circle-check text-success"></i> Delivered</td>
+                        {% else %}
+                            <td><i class="fa-solid fa-truck text-warning"></i> Not Delivered</td>
+                        {% endif %}
+
+                        <td>{{ order.latest_update.timestamp }}</td>
+                    {% else %}
+                        <td>No Status</td>
+                        <td><i class="fa-solid fa-truck text-secondary"></i> Not Delivered</td>
+                        <td>-</td>
+                    {% endif %}
+
+                    <td>
+                        <a href="{% url 'invoice' order.order_id %}" class="btn btn-sm btn-primary" target="_blank">Download Invoice</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</section>
+{% endblock body %}
