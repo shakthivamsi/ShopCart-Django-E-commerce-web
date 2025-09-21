@@ -28,15 +28,15 @@ This is a secure and feature-rich ecommerce web application built with Django 3.
 ## Installation
 
 1. Clone the repository:
-git clone https://github.com/NakkaAnthanakshmi/ecommerce-django.git
-cd ecommerce-django
+- git clone https://github.com/NakkaAnthanakshmi/ecommerce-django.git
+- cd ecommerce-django
 
 2. Create and activate a virtual environment:
-python -m venv venv
-source venv/bin/activate # On Windows: venv\Scripts\activate
+- python -m venv venv
+- source venv/bin/activate # On Windows: venv\Scripts\activate
 
 3. Install dependencies:
-pip install -r requirements.txt
+- pip install -r requirements.txt
 
 4. Set environment variables:
 Create a `.env` file or set environment variables for:
@@ -47,13 +47,13 @@ Create a `.env` file or set environment variables for:
 - `RAZORPAY_KEY_SECRET`
 
 5. Apply database migrations:
-python manage.py migrate
+- python manage.py migrate
 
 6. Collect static files:
-python manage.py collectstatic
+- python manage.py collectstatic
 
 7. Run the development server:
-python manage.py runserver
+- python manage.py runserver
 
 ## Deployment
 
