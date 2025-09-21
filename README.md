@@ -28,7 +28,7 @@ This is a secure and feature-rich ecommerce web application built with Django 3.
 ## Installation
 
 1. Clone the repository:
-- git clone https://github.com/NakkaAnthanakshmi/ecommerce-django.git
+. git clone https://github.com/NakkaAnthanakshmi/ecommerce-django.git
 - cd ecommerce-django
 
 2. Create and activate a virtual environment:
