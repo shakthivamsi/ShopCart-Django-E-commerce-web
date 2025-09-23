@@ -166,3 +166,5 @@ RAZORPAY_KEY_SECRET = "xUxTwvI1JilItfJy53BI5mii"
 import os
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
