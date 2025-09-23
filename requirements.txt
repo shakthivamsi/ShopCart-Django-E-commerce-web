@@ -78,7 +78,7 @@ MarkupSafe==2.1.5
 matplotlib>=3.5.0,<3.9.1
 matplotlib-inline==0.1.7
 mdurl==0.1.2
-mediapipe
+
 mistune==3.0.2
 ml-dtypes==0.3.2
 mlxtend==0.23.4
