@@ -28,7 +28,7 @@ DEBUG = False
 
 
 #ALLOWED_HOSTS = []
-ALLOWED_HOSTS = ['ecommerce.onrender.com', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['ecommerce.onrender.com', 'localhost', '127.0.0.1','ecommerce-y6ab.onrender.com']
 
 
 
